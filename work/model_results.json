@@ -1,0 +1,50 @@
+{
+  "generated_from": "w07_action_playbook.ipynb (ML-10)",
+  "feature_window": [
+    "2026-01-01",
+    "2026-03-31"
+  ],
+  "label_window": [
+    "2026-04-01",
+    "2026-04-30"
+  ],
+  "label": "is_declining_next30",
+  "features": [
+    "imp_90d",
+    "pos_90d",
+    "days_with_impressions_90d",
+    "ai_referral_share_90d",
+    "content_age_days"
+  ],
+  "split": "grouped_by_client_hash_id, test_size=0.20, seed=42",
+  "n_rows_frame": 102769,
+  "n_clients_frame": 30,
+  "base_rate": 0.49401083984470023,
+  "candidate_precision_at_50": {
+    "logistic_regression": 0.6,
+    "decision_tree": 0.34,
+    "random_forest": 0.22
+  },
+  "winning_model": "logistic_regression",
+  "baseline_precision_at_50": 0.34,
+  "reason_code_counts": {
+    "VISIBLE_MODEL_OPPORTUNITY": 50750,
+    "NO_ACTION": 38435,
+    "POSITION_UPSIDE": 4613,
+    "STALE_VISIBLE_STABLE": 3821,
+    "STALE_VISIBLE_DECLINING": 3780,
+    "MODEL_DECLINE_RISK": 1370
+  },
+  "action_counts": {
+    "refresh_and_expand": 55363,
+    "no_action": 38435,
+    "refresh_now": 5150,
+    "monitor": 3821
+  },
+  "confidence_counts": {
+    "medium": 59898,
+    "low": 23663,
+    "high": 19208
+  },
+  "high_confidence_rows": 19208
+}
