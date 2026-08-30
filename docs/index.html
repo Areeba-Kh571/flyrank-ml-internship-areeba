@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Which Content to Refresh First? — Areeba Hassan</title>
+<style>
+  :root {
+    --ink: #1a1d23;
+    --sub: #52585f;
+    --line: #e2e5e9;
+    --accent: #2456c9;
+    --bg-soft: #f6f7f9;
+    --good: #1a7a4c;
+    --bad: #b3261e;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: #fff;
+    line-height: 1.65;
+  }
+  .wrap { max-width: 780px; margin: 0 auto; padding: 0 24px; }
+  header.hero {
+    background: var(--bg-soft);
+    border-bottom: 1px solid var(--line);
+    padding: 56px 0 40px;
+  }
+  header.hero h1 {
+    font-size: 1.9rem;
+    line-height: 1.25;
+    margin: 0 0 14px;
+  }
+  .byline {
+    color: var(--sub);
+    font-size: 0.95rem;
+    margin-bottom: 22px;
+  }
+  .byline a { color: var(--accent); }
+  .abstract-box {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    border-radius: 6px;
+    padding: 20px 22px;
+    font-size: 1rem;
+  }
+  .abstract-box .label {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    margin-bottom: 8px;
+    display: block;
+  }
+  main { padding: 44px 0 80px; }
+  section { margin-bottom: 48px; }
+  h2 {
+    font-size: 1.3rem;
+    margin: 0 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--ink);
+  }
+  h3 { font-size: 1.05rem; margin: 24px 0 10px; }
+  p { margin: 0 0 14px; }
+  ul, ol { margin: 0 0 14px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  code, pre {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.88em;
+    background: var(--bg-soft);
+    border-radius: 4px;
+  }
+  code { padding: 2px 5px; }
+  pre {
+    padding: 14px 16px;
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    line-height: 1.5;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 14px 0 8px;
+    font-size: 0.92rem;
+  }
+  th, td {
+    border: 1px solid var(--line);
+    padding: 8px 10px;
+    text-align: right;
+  }
+  th:first-child, td:first-child { text-align: left; }
+  thead th { background: var(--bg-soft); }
+  .win { color: var(--good); font-weight: 700; }
+  .lose { color: var(--bad); }
+  .table-caption { color: var(--sub); font-size: 0.85rem; margin-top: 4px; margin-bottom: 20px; }
+  figure { margin: 24px 0; }
+  figure img {
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    display: block;
+  }
+  figcaption {
+    color: var(--sub);
+    font-size: 0.88rem;
+    margin-top: 8px;
+    text-align: center;
+  }
+  .callout {
+    background: var(--bg-soft);
+    border-radius: 6px;
+    padding: 16px 18px;
+    font-size: 0.95rem;
+    margin: 16px 0;
+  }
+  .callout.limit { border-left: 4px solid var(--bad); }
+  .callout.rec { border-left: 4px solid var(--accent); }
+  .reason-list { display: grid; gap: 6px; margin: 14px 0; }
+  .reason-list code { display: inline-block; margin-right: 6px; }
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 32px 0 56px;
+    color: var(--sub);
+    font-size: 0.9rem;
+  }
+  footer a { color: var(--accent); }
+  .disclaimer {
+    background: #fff8e6;
+    border: 1px solid #f0dca0;
+    border-radius: 6px;
+    padding: 14px 18px;
+    font-size: 0.92rem;
+    margin: 18px 0;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  @media (max-width: 600px) {
+    header.hero { padding: 40px 0 28px; }
+    header.hero h1 { font-size: 1.5rem; }
+    main { padding: 32px 0 60px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <h1>Which Content to Refresh First? A Client-Grouped, Leakage-Checked Scoring Model on 79M Rows of Real Search Data</h1>
+    <div class="byline">
+      Areeba Hassan &middot; FlyRank ML Internship, Lane 2 (Refresh / Content Opportunity Scoring) &middot; August 2026 &middot;
+      <a href="https://github.com/Areeba-Kh571/flyrank-ml-internship-areeba" target="_blank" rel="noopener">Full repo &amp; notebooks →</a>
+    </div>
+    <div class="abstract-box">
+      <span class="label">Abstract</span>
+      Out of a full client content inventory, which pages should a reviewer look at first for refresh? Using FlyRank's pseudonymized search-performance warehouse (~79M daily rows across 104 clients; 102,769 eligible content items across 30 clients with a full Q1 2026 history), I built a client-grouped, leakage-checked pipeline that scores each page's Q1 2026 signals against whether it declined in April 2026, comparing a transparent hand-written rule baseline against logistic regression, decision tree, and random forest models. A first pass looked like a clear win for the most complex-seeming model — a decision tree reaching Precision@50 of 0.900 against the baseline's 0.340 — until a deliberate robustness check showed that lift didn't survive removing one structurally-coupled feature, <code>trend_ratio_90d</code>; with it gone, the tree settles at an exact tie with baseline (0.340) and the random forest drops below it (0.220), confirmed by two independent full-pipeline runs agreeing to three decimal places. The actual winner is the <em>simplest</em> model tried: logistic regression holds a real, reproducible Precision@50 of 0.600 against the baseline's 0.340 (+0.260), identical across three separate runs including one that never saw the leaky feature at all. This is a decision-support ranking for a human reviewer's limited time — not an automated publishing decision, and not a causal claim that refreshing any page recovers its traffic.
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section id="introduction">
+  <h2>1. Introduction / Problem</h2>
+  <p>A FlyRank content reviewer has limited time and a large inventory. Right now, deciding what to refresh first relies on manual judgment across hundreds or thousands of pages. This project builds a system that <strong>orders</strong> that inventory — so the reviewer opens the most promising candidates first, rather than working through it unranked.</p>
+  <p>The unit of analysis is one content item (a client/content pair), summarized over a 90-day feature window (Q1 2026) and evaluated against whether it declined over the following 30 days (April 2026). The output is a ranked queue with a score, a reason code, a recommended action (<code>refresh_now</code>, <code>refresh_and_expand</code>, <code>monitor_ai_opportunity</code>, <code>monitor</code>, <code>no_action</code>), and a confidence label.</p>
+  <p>The cost of a wrong call here is a decision-support risk, not a safety risk: a false positive wastes a reviewer's time on a page that wasn't really declining, a false negative means a genuinely declining page sits further down the queue. A fixed-weight hand rule can only combine a short list of conditions its author already anticipated, and can't represent conditional effects — for example, ranking position only matters once there's enough impression volume behind it. A model that can weigh several signals together, and learn interactions a linear rule can't express, is the thing actually being tested — and it has to re-earn that advantage on genuinely forward-split, warehouse-scale data.</p>
+</section>
+
+<section id="data">
+  <h2>2. Data</h2>
+  <p><strong>Source:</strong> the full FlyRank warehouse release (Hugging Face, gated access), tables <code>dim_clients</code>, <code>dim_content</code>, and <code>fact_content_daily_performance</code>. The raw private warehouse is never used outside this access pattern and never re-exported.</p>
+  <p><strong>Features used:</strong> <code>imp_90d</code>, <code>pos_90d</code>, <code>days_with_impressions_90d</code>, <code>ai_referral_share_90d</code>, <code>content_age_days</code> — all computed strictly from the Q1 2026 window, or from an immutable content-creation date.</p>
+  <p><strong>Deliberately excluded, and why:</strong></p>
+  <ul>
+    <li>Anything dated on or after April 1, 2026 — the outcome window.</li>
+    <li>A 90-day "recent query" table whose window is anchored to the snapshot's own end rather than the report's March 31 cutoff, so it silently overlaps the label period.</li>
+    <li>A June 2026 sample table — the sealed test month; never opened anywhere in this project.</li>
+    <li>A "content updated" timestamp, which reflects current state rather than history and was found to produce a negative "days since update" for ~75% of rows (a value from <em>after</em> the decision point).</li>
+    <li><code>trend_ratio_90d</code> as a model feature — tested directly and found to carry 68.4% of a decision tree's feature importance, well past a "suspiciously perfect" threshold. It shares a reference point with the label's own definition, creating a structural coupling rather than new signal (details in Results).</li>
+  </ul>
+  <p><strong>Leakage risk controls:</strong> the label-window aggregate used to build the target is never used as a feature — confirmed both by an in-code assertion and a deliberate injection test showing the score spike when it's added on purpose. The final pipeline re-runs this assertion as an automated check on every run: <code>FEATURES contains no banned column: True</code>.</p>
+  <p><strong>Privacy:</strong> client and content identifiers are pseudonymous hashes used only for grouping and joining — never as model features, never mapped back to a real client. No client names, domains, URLs, page titles, or raw queries appear anywhere in this project's code, notebooks, or this page.</p>
+</section>
+
+<section id="methodology">
+  <h2>3. Methodology</h2>
+  <h3>Baseline</h3>
+  <p>A transparent hand-written rule: a page is worth flagging if it's stale (created 180+ days before the decision point) and still visible (≥500 impressions in the trailing 90 days) — and among pages clearing both bars, ones whose recent 30-day pace is already falling get flagged first.</p>
+  <pre>stale   = content_age_days >= 180
+visible = imp_90d >= 500
+declining_now = trend_ratio_90d < 0.8
+baseline_score = stale * visible * imp_90d * (1 + declining_now)</pre>
+  <p>Every input is computed the same way, from the same Q1 window, as the model's features — same data, same label, same metric, same client-holdout split. It is frozen once model work starts and never re-tuned to chase the model's numbers.</p>
+
+  <h3>Label definition</h3>
+  <p><code>is_declining_next30 = 1</code> when April 2026's total impressions come in under 80% of the Q1 window's own last-30-day rate, else <code>0</code> — a threshold-defined proxy for "declining," built entirely from a window strictly after every feature.</p>
+
+  <h3>Models compared</h3>
+  <p>Logistic regression, a depth-3 decision tree, and a random forest (300 trees) — in that order of complexity, starting simple and adding complexity only if it earns its keep. Each model's predicted probability is used as a ranking score, evaluated at Precision@50, not as a bare yes/no classifier.</p>
+
+  <h3>Validation design</h3>
+  <p>A <code>GroupShuffleSplit</code> by client, 80/20, seed 42 — no client's rows appear on both sides of the split (asserted in code, not just claimed). A naive random row-level split is also computed on the same data specifically so the <em>gap</em> between the two is itself part of the reported evidence: a large naive-vs-grouped gap is a memorization-risk signal, not proof of real generalization.</p>
+
+  <h3>Leakage checks run</h3>
+  <ol>
+    <li>Feature-importance audit — any single feature carrying a suspiciously large share of a tree-based model's importance gets investigated.</li>
+    <li>With/without robustness retraining — retrain once with a suspect feature, once without, and compare.</li>
+    <li>Naive-vs-grouped split gap — computed for every candidate model.</li>
+    <li>Label-injection test — deliberately add the label-window raw aggregate as a feature and confirm the score spikes, proving the leakage check itself is sensitive enough to catch real leakage.</li>
+  </ol>
+</section>
+
+<section id="results">
+  <h2>4. Results</h2>
+  <p>An initial run — with <code>trend_ratio_90d</code> included as a feature — showed the decision tree reaching Precision@50 = 0.900 against the baseline's 0.340. But that feature alone carried 68.4% of the tree's importance. Running the with/without robustness check across four independent notebook runs settled the tree's Precision@50 at <strong>0.340</strong> (an exact tie with baseline) and the random forest's at <strong>0.220</strong> (below baseline), once two full-pipeline runs landed on identical numbers.</p>
+
+  <table>
+    <thead>
+      <tr><th>Model</th><th>ROC AUC</th><th>Avg precision</th><th>Precision@50</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>baseline_rules (frozen)</td><td>0.400</td><td>0.359</td><td>0.340</td></tr>
+      <tr><td>logistic_regression</td><td>0.482</td><td>0.432</td><td class="win">0.600 — winning method</td></tr>
+      <tr><td>decision_tree (depth 3)</td><td>0.530</td><td>0.415</td><td>0.340 (tie)</td></tr>
+      <tr><td>random_forest</td><td>0.521</td><td>0.414</td><td class="lose">0.220 (loss)</td></tr>
+    </tbody>
+  </table>
+  <div class="table-caption">Corrected-feature comparison (<code>trend_ratio_90d</code> excluded), the feature set actually used to build the production queue. Confirmed by two independent full-pipeline runs agreeing exactly. Base rate on this frame: 0.494 (102,769 rows, 30 clients); base rate on the held-out client split: 0.414.</div>
+
+  <p>Logistic regression is the only model that beats the frozen baseline by a clear, non-marginal margin (+0.260) — and it does so at exactly the same value (0.600) across three independently-built runs, including one run that included the leaky feature and one that never did. That stability is what makes this a genuine result rather than a lucky split.</p>
+
+  <figure>
+    <img src="img/precision_at_50_comparison.png" alt="Bar chart comparing Precision@50 for logistic regression, decision tree, random forest, and the baseline rule, with a dashed line for the base rate">
+    <figcaption>Precision@50 by model vs. the frozen baseline, on the client-holdout split. Logistic regression is the only model that clears the base-rate line by a wide margin.</figcaption>
+  </figure>
+
+  <h3>Naive-vs-grouped evidence</h3>
+  <p>Across four separate checks, the naive-split (row-level, client-leaking) Precision@50 numbers ran far above the honest client-grouped numbers — gaps as large as +0.540 to +0.580 for the random forest. That gap is squarely in the range flagged as a memorization risk, which is why no model's naive number is ever quoted on its own anywhere in this project.</p>
+
+  <h3>Error analysis</h3>
+  <p>The decision tree's feature importances were dominated by <code>trend_ratio_90d</code> (68.4%), with <code>days_with_impressions_90d</code> (17.2%) and <code>content_age_days</code> (14.4%) picking up the remainder — a single feature towering this far over the rest is exactly the "suspiciously perfect" pattern that triggered the robustness check. Among the top 50 ranked test rows, the false positives were pages with high impressions and a high recent-trend ratio that still declined the next month — a seasonality/consolidation confound the Q1-only feature set has no way to see. The false negatives were real April decliners that looked flat or quiet on every available Q1 signal — nothing flagged them before the drop.</p>
+
+  <figure>
+    <img src="img/action_mix.png" alt="Table or chart showing the count of items assigned to each recommended action in the final ranked queue">
+    <figcaption>Distribution of recommended actions across the final 102,769-row ranked queue.</figcaption>
+  </figure>
+</section>
+
+<section id="limitations">
+  <h2>5. Limitations &amp; Honest Framing</h2>
+  <div class="callout limit">
+    <p><strong>This is decision support, not a causal claim.</strong> Nothing here demonstrates that refreshing a flagged page will recover its traffic, and nothing here should be read as a prediction of how a search algorithm ranks content. The model orders a reviewer's limited attention; it does not decide for them.</p>
+  </div>
+  <p><strong>What would make a specific recommendation wrong:</strong> the page is intentionally stable evergreen content that never needed a refresh; the apparent decline is seasonal, or demand moved to a sibling page (consolidation) rather than genuinely dropping; the page is too new for its Q1 window to mean much; a position or AI-referral signal is missing or noisy for that specific row; or the page was never observed in search rankings at all, which means it's scored from weaker evidence (impressions and trend alone).</p>
+  <p><strong>Population-selection disclosure:</strong> rows require a full Q1 history and a minimum impression floor, both computed only from Q1-and-earlier information. Concretely, 27 of 104 total clients are excluded from this frame entirely for lacking a full Q1 window, leaving 30 clients with 102,769 eligible content items — this work makes no claim about the excluded clients' content.</p>
+  <p><strong>Metric caveats:</strong> at 50 candidates out of an 11,733-row test set, Precision@50 is a coarse, noisy statistic — early robustness-check numbers for the tree and forest moved across runs (0.300→0.340 for the tree; 0.240→0.360→0.220 for the forest) before settling once two independent full-pipeline runs agreed exactly. That agreement, not any single run, is what makes the final numbers trustworthy. Random-forest results specifically can also shift a few points across scikit-learn versions; the direction and rough size of any lift over baseline is the stable claim, not a specific third decimal.</p>
+  <p><strong>What this project does not attempt:</strong> it does not model <em>why</em> a page's ranking might change, does not account for algorithm updates, and was not tested against a held-out future time period beyond the single April 2026 window described here.</p>
+</section>
+
+<section id="recommendations">
+  <h2>6. Ranked Recommendations</h2>
+  <p>The ranked queue is the deliverable a reviewer actually opens: every row carries a score, a reason code, a recommended action, and a confidence label.</p>
+  <div class="reason-list">
+    <div><code>MODEL_DECLINE_RISK</code> — the model flags real decline risk beyond what the baseline rule alone would catch.</div>
+    <div><code>VISIBLE_MODEL_OPPORTUNITY</code> — high visibility with model-identified upside.</div>
+    <div><code>POSITION_UPSIDE</code> — ranking position signal suggests room to move up.</div>
+    <div><code>AI_REFERRAL_GAP</code> — an AI-referral signal the baseline rule cannot see at all, by construction.</div>
+    <div><code>STALE_VISIBLE_DECLINING</code> / <code>STALE_VISIBLE_STABLE</code> — the baseline's own staleness+visibility logic.</div>
+    <div><code>NO_ACTION</code> — no strong signal in either direction.</div>
+  </div>
+  <div class="callout rec">
+    <p><strong>How to use it:</strong> open the <code>high</code>-confidence rows first — 19,208 of 102,769 rows (18.7% of the inventory), a small, inspectable slice rather than the whole queue at once. Read the reason code, sanity-check against the limitations above (seasonal dip? sibling-page consolidation? intentionally evergreen?), then decide refresh / expand / monitor / skip. <code>medium</code>/<code>low</code> rows are lower priority, not "ignore" — they mean the evidence is thinner. 28,194 rows sit within 5% of the high-confidence cutoff, so that line shouldn't be treated as a hard boundary.</p>
+  </div>
+  <p>The honest framing is not "no model beats the baseline" — it's "the simplest model does, clearly, and the more complex ones don't." The queue reflects logistic regression's ranking, plus it surfaces AI-referral and position-upside candidates the baseline rule cannot see at all, by construction.</p>
+</section>
+
+<section id="reproducibility">
+  <h2>7. Reproducibility</h2>
+  <p>Every number on this page traces back to a committed notebook, run end to end in Google Colab against the live warehouse, with output receipts committed alongside the code.</p>
+  <ul>
+    <li><a href="https://github.com/Areeba-Kh571/flyrank-ml-internship-areeba/blob/main/work/notebooks/w05_model.ipynb" target="_blank" rel="noopener">w05_model.ipynb</a> — model training and the first leakage discovery</li>
+    <li><a href="https://github.com/Areeba-Kh571/flyrank-ml-internship-areeba/blob/main/work/notebooks/w06_validation_audit.ipynb" target="_blank" rel="noopener">w06_validation_audit.ipynb</a> — honest-split re-run and leakage audit</li>
+    <li><a href="https://github.com/Areeba-Kh571/flyrank-ml-internship-areeba/blob/main/work/notebooks/w07_action_playbook.ipynb" target="_blank" rel="noopener">w07_action_playbook.ipynb</a> — production queue build</li>
+    <li><a href="https://github.com/Areeba-Kh571/flyrank-ml-internship-areeba/blob/main/work/notebooks/capstone.ipynb" target="_blank" rel="noopener">capstone.ipynb</a> — full consolidated pipeline, confirms every number above</li>
+    <li><a href="https://github.com/Areeba-Kh571/flyrank-ml-internship-areeba/blob/main/work/capstone_report.md" target="_blank" rel="noopener">capstone_report.md</a> — the full technical report this page is drawn from</li>
+  </ul>
+  <p><strong>Seed:</strong> 42, fixed everywhere a split or model is initialized. <strong>Environment:</strong> pandas, numpy, scikit-learn, matplotlib, duckdb, huggingface_hub (exact versions in <code>requirements.txt</code>).</p>
+  <p><strong>To rerun:</strong> clone the repo, install requirements, open each notebook in Colab (badges at the top of each), run top to bottom, supplying a Hugging Face read token when prompted. Each notebook re-pulls its own frame from the warehouse independently.</p>
+  <p><strong>Receipts:</strong> the scored queue (<code>work/outputs/action_playbook_queue.csv</code>, 102,769 rows) and metrics file (<code>work/outputs/model_results.json</code>) are committed to the repo.</p>
+</section>
+
+<div class="disclaimer">
+  This page is decision-support research, not investment, legal, medical, or safety-critical guidance. All claims are observational and comparative (model vs. baseline, same split) — none are causal. No client names, domains, URLs, or raw search queries appear anywhere in this project.
+</div>
+
+</main>
+
+<footer class="wrap">
+  <h2 style="border:none; font-size:1.1rem;">8. Acknowledgments &amp; Data Credit</h2>
+  <p>Built on the FlyRank ML Internship dataset, provided by <a href="https://flyrank.ai" target="_blank" rel="noopener">FlyRank</a>. Thank you to the FlyRank team and my mentor for the warehouse access, the lane guide, and the skills library this project was built on.</p>
+  <p style="margin-top:24px;">© 2026 Areeba Hassan &middot; <a href="https://github.com/Areeba-Kh571/flyrank-ml-internship-areeba" target="_blank" rel="noopener">Repository</a></p>
+</footer>
+
+</body>
+</html>
